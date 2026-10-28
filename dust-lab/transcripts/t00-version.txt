@@ -1,0 +1,2 @@
+$ dust --version
+Dust 1.2.6

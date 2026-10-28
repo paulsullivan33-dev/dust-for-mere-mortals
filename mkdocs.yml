@@ -1,0 +1,28 @@
+site_name: Dust for Mere Mortals
+site_description: A disk-usage tool that draws where your space went as a tree you can read at a glance. First scans against a tree of known sizes, honest numbers in blocks and in bytes, hard links and sparse files without the traps, and the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/dust-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What dust is: what-dust-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing dust: installing-dust.md
+  - Your First Scan: your-first-scan.md
+  - Reading the Tree: reading-the-tree.md
+  - Shaping the Output: shaping-the-output.md
+  - Two Kinds of Size: two-kinds-of-size.md
+  - Hard Links and Symlinks: hard-links-and-symlinks.md
+  - Finding What You Came For: finding-what-you-came-for.md
+  - JSON and the Config File: json-and-the-config-file.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

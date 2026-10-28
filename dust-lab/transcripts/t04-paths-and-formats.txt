@@ -1,0 +1,34 @@
+$ dust -p fixture/docs
+4.0Ki   ┌── fixture/docs/notes.txt        │█                              │   0%
+2.0Mi   ├── fixture/docs/report.pdf       │██████                         │  20%
+8.0Mi   │ ┌── fixture/docs/archive/old.zip│████████████████████████       │  80%
+8.0Mi   ├─┴ fixture/docs/archive          │████████████████████████       │  80%
+ 10Mi ┌─┴ fixture/docs                    │██████████████████████████████ │ 100%
+
+$ dust -o b fixture (last line only)
+21180416B ┌─┴ fixture            │███████████████████████████████████████ │ 100%
+$ dust -o si -d 1 fixture
+  0B   ┌── vm      │█                                                     │   0%
+4.1K   ├── tiny.txt│█                                                     │   0%
+131K   ├── .hidden │█                                                     │   1%
+1.0M   ├── backup  │███                                                   │   5%
+3.1M   ├── music   │████████                                              │  15%
+6.4M   ├── photos  │████████████████                                      │  30%
+ 10M   ├── docs    │███████████████████████████                           │  50%
+ 21M ┌─┴ fixture   │█████████████████████████████████████████████████████ │ 100%
+
+$ dust -b fixture/docs
+4.0Ki   ┌── notes.txt
+2.0Mi   ├── report.pdf
+8.0Mi   │ ┌── old.zip
+8.0Mi   ├─┴ archive
+ 10Mi ┌─┴ docs
+
+$ dust --skip-total fixture/docs fixture/music
+3.0Mi   ┌── track-copy.flac  │██████████                                  │  23%
+3.0Mi ┌─┴ music              │██████████                                  │  23%
+4.0Ki │ ┌── notes.txt        │█                                           │   0%
+2.0Mi │ ├── report.pdf       │███████                                     │  15%
+8.0Mi │ │ ┌── old.zip        │███████████████████████████                 │  62%
+8.0Mi │ ├─┴ archive          │███████████████████████████                 │  62%
+ 10Mi ├─┴ docs               │██████████████████████████████████          │  77%

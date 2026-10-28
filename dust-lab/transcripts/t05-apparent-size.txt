@@ -1,0 +1,14 @@
+$ dust fixture/vm
+0B   ┌── disk.img│█                                                       │   0%
+0B ┌─┴ vm        │█                                                       │   0%
+$ dust -s fixture/vm
+64Mi   ┌── disk.img│█████████████████████████████████████████████████████ │ 100%
+64Mi ┌─┴ vm        │█████████████████████████████████████████████████████ │ 100%
+$ dust -o b fixture (root, blocks)
+21180416B ┌─┴ fixture            │███████████████████████████████████████ │ 100%
+$ dust -s -o b fixture (root, apparent)
+91427237B ┌─┴ fixture            │███████████████████████████████████████ │ 100%
+$ du --block-size=1 fixture (root)
+21180416	fixture
+$ du --block-size=1 --apparent-size fixture (root)
+88281195	fixture

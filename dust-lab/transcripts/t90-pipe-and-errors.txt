@@ -1,0 +1,26 @@
+$ dust /usr | head -3
+177Mi     ┌── boost                  │█░                                  │   2%
+308Mi   ┌─┴ include                  │██                                  │   4%
+189Mi   │ ┌── pandoc                 │█░░░░░                              │   3%
+
+(the pipeline above completed cleanly on most runs. On one
+earlier run of the same pipeline, standard error carried
+this instead, after head had closed the pipe:)
+
+thread '<unnamed>' (59757) panicked at /rustc/48a229ceaefd4985c50990b14116b6d856af0985/library/std/src/io/stdio.rs:1166:9:
+failed printing to stdout: Broken pipe (os error 32)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+(the panic is a race with a reader that closes early: it
+appears only intermittently behind head. A reader that
+closes the pipe at once reproduces it reliably — two of
+three runs of the same scan into an instantly-exiting
+reader:)
+
+$ dust /usr | false
+thread '<unnamed>' (67197) panicked at /rustc/48a229ceaefd4985c50990b14116b6d856af0985/library/std/src/io/stdio.rs:1166:9:
+failed printing to stdout: Broken pipe (os error 32)
+
+$ dust /no/such/place
+No such file or directory: /no/such/place
+exit code: 1

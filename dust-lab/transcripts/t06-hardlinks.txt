@@ -1,0 +1,11 @@
+$ dust fixture/music
+3.0Mi   ┌── track-copy.flac│█████████████████████████████████████████████ │ 100%
+3.0Mi ┌─┴ music            │█████████████████████████████████████████████ │ 100%
+$ dust -s fixture/music
+3.0Mi   ┌── track-copy.flac│███████████████████████                       │  50%
+3.0Mi   ├── track.flac     │███████████████████████                       │  50%
+6.0Mi ┌─┴ music            │█████████████████████████████████████████████ │ 100%
+$ du --block-size=1 fixture/music
+3145728	fixture/music
+$ du --block-size=1 --apparent-size fixture/music
+3145728	fixture/music

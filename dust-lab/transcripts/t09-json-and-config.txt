@@ -1,0 +1,8 @@
+$ dust -j fixture/docs
+{"size":"10Mi","name":"fixture/docs","children":[{"size":"8.0Mi","name":"fixture/docs/archive","children":[{"size":"8.0Mi","name":"fixture/docs/archive/old.zip","children":[]}]},{"size":"2.0Mi","name":"fixture/docs/report.pdf","children":[]},{"size":"4.0Ki","name":"fixture/docs/notes.txt","children":[]}]}
+
+$ cat cfg.toml
+reverse=true
+$ dust --config cfg.toml fixture/docs (first two lines)
+ 10Mi └─┬ docs        │██████████████████████████████████████████████████ │ 100%
+8.0Mi   ├─┬ archive   │████████████████████████████████████████           │  80%

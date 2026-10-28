@@ -1,0 +1,73 @@
+The lab — one real install, one fixture tree, exact sizes
+====================================================================
+
+The lab is dust as its project ships it,
+installed from the official release
+archive on the build machine (an Ubuntu
+24.04 sandbox, 2 CPUs, 7.7 GB RAM):
+
+  * dust 1.2.6, from
+    dust-v1.2.6-x86_64-unknown-linux-gnu.tar.gz
+    (bootandy/dust GitHub releases),
+    unpacked into a scratch folder and
+    never installed system-wide.
+  * A fixture tree built by
+    dust-lab/make-fixture.sh: ordinary
+    files filled with zeros to exact
+    chosen lengths, so the right answer
+    was known before the tool spoke:
+      photos/   5 MiB + 1 MiB + 64 KiB,
+                plus a symlink to docs/
+      docs/     2 MiB + 4 KiB, and an
+                8 MiB file in archive/
+      vm/       a sparse file, length
+                64 MiB, blocks zero
+      music/    one 3 MiB file with two
+                names (a hard link)
+      backup/   1 MiB
+      tiny.txt (100 bytes) and .hidden
+      (128 KiB) at the top
+  * Ground truth came from du on the
+    same tree: 21,180,416 bytes by disk
+    blocks, 88,281,195 by file lengths
+    (transcript t01).
+
+What the lab ran, in
+dust-lab/transcripts/:
+
+  t00  dust --version
+  t01  the fixture's exact lengths, and
+       du's two totals
+  t02  the default scan of the fixture
+  t03  -d 1, -n 5, -z 2M, -r
+  t04  -p, -o b, -o si, -b, --skip-total
+  t05  the sparse file in both modes;
+       byte-exact dust-versus-du totals
+  t06  the hard link in both modes,
+       against du both ways
+  t07  the symlink ignored, then
+       followed with -L
+  t08  two roots, -F, -D, -f, -t,
+       -e, -v, -i
+  t09  -j JSON output; a one-line
+       config file applied
+  t90  a path that does not exist
+       (message, exit 1), and the
+       broken-pipe panic, intermittent
+       into head and reproduced
+       reliably with a reader that
+       closes at once (dust /usr | false)
+
+What the lab could not stage honestly:
+
+  * Permission errors. The lab worked
+    as the superuser, to whom no folder
+    is unreadable, so --print-errors
+    and the locked-door behaviour are
+    described in chapters 13-14 from
+    the documentation, not shown.
+  * A second filesystem, so -x is
+    documented only; likewise the
+    package-manager and cargo installs,
+    other platforms, and every config
+    key except reverse.

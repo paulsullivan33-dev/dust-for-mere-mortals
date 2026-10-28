@@ -1,0 +1,18 @@
+$ find fixture -type f | sort, with sizes
+131072 fixture/.hidden
+1048576 fixture/backup/snapshot.tar
+8388608 fixture/docs/archive/old.zip
+4096 fixture/docs/notes.txt
+2097152 fixture/docs/report.pdf
+3145728 fixture/music/track-copy.flac
+3145728 fixture/music/track.flac
+5242880 fixture/photos/holiday.raw
+1048576 fixture/photos/portrait.jpg
+65536 fixture/photos/thumb.jpg
+100 fixture/tiny.txt
+67108864 fixture/vm/disk.img
+
+$ du --block-size=1 fixture | tail -1 (disk blocks)
+21180416	fixture
+$ du --block-size=1 --apparent-size fixture | tail -1 (file lengths)
+88281195	fixture

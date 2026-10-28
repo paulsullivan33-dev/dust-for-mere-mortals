@@ -1,0 +1,64 @@
+dust — the distilled commands
+====================================================================
+Placeholders: <path> is a folder or file
+of yours. Sizes like 2M mean what dust
+says they mean (chapter 6).
+
+FIRST CONTACT (chapters 3-4)
+--------------------------------------------------------------------
+  dust --version
+  sh dust-lab/make-fixture.sh      # the known-size practice tree
+  dust fixture                     # the first picture
+  dust                             # the current folder
+  dust <path>                      # any folder you own
+
+READING AND SHAPING (chapters 5-6)
+--------------------------------------------------------------------
+  dust -d 1 <path>                 # top level only, bare totals
+  dust -n 5 <path>                 # the five largest entries
+  dust -z 2M <path>                # nothing smaller than 2 MiB
+  dust -r <path>                   # root at the top, biggest first
+  dust -p <path>                   # full paths, never shortened
+  dust -o b <path>                 # the whole tree in bytes
+  dust -o si <path>                # units in powers of 1000
+  dust -b <path>                   # no bars or percentages
+  dust -P -c <path>                # pipe manners: no spinner,
+                                   # no colour (chapter 3)
+
+THE TWO SIZES (chapters 7-8)
+--------------------------------------------------------------------
+  dust <path>                      # disk usage (blocks) — default
+  dust -s <path>                   # apparent size (file lengths)
+  dust -o b <path>                 # cross-check, blocks:
+  du --block-size=1 <path>         #   these two should agree
+  dust -L <path>                   # follow symlinks — totals can
+                                   #   double-count what they reach
+  # remember: -s counts hard-linked files once per name (ch. 8)
+
+FINDING (chapter 9)
+--------------------------------------------------------------------
+  dust -F <path>                   # largest files, flat
+  dust -D <path>                   # folders only
+  dust -f <path>                   # size = number of files
+  dust -t <path>                   # totals by file extension
+  dust -e '\.jpg$' <path>          # keep only matching paths
+  dust -v '\.jpg$' <path>          # exclude matching paths
+  dust -i <path>                   # leave hidden files out
+  dust <path-a> <path-b>           # several roots, one (total)
+
+DATA AND DEFAULTS (chapter 10)
+--------------------------------------------------------------------
+  dust -j <path>                   # the tree as JSON (stdout
+                                   #   in 1.2.6, despite --help)
+  dust -j -o b <path>              # JSON with byte sizes
+  # standing preferences live in ~/.config/dust/config.toml
+  # as kebab-case keys, e.g.  reverse=true
+  dust --config <file> <path>      # use a specific config file
+
+CAUTION FLAGS (chapters 13-14)
+--------------------------------------------------------------------
+  dust --print-errors <path>       # name the folders it could
+                                   #   not read (documented only
+                                   #   in this guide — ch. 13)
+  dust -x <path>                   # stay on one filesystem
+                                   #   (documented only — ch. 13)
